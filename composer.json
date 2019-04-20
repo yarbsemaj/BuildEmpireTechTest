@@ -1,3 +1,6 @@
 {
 
+    "require": {
+        "polarising/bcrypt": "^1.0"
+    }
 }
