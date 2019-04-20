@@ -1,6 +1,7 @@
 <?php
 
+use Routing\Routes\RouteController;
+
 $routes = [
-    'GET:/'=>'Welcome Home',
-    'GET:/login'=>'HI'
+    'GET:/'=>(new RouteController('HomeController','index')),
 ];
