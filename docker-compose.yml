@@ -6,13 +6,18 @@ services:
       context: ./bin/webserver
     container_name: 'png-webserver'
     restart: 'always'
+    environment:
+      - DB_HOST=mysql
+      - DB_USERNAME=png
+      - DB_DATABASE=png
+      - DB_PASSWORD=png
     ports:
       - "8000:80"
       - "443:443"
     links: 
       - mysql
     volumes: 
-      - ${DOCUMENT_ROOT-./}:/var/www/
+      - ${DOCUMENT_ROOT-./}:/var/www/html
       - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
       - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
       - ${LOG_DIR-./logs/apache2}:/var/log/apache2
