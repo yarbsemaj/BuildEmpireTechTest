@@ -6,5 +6,10 @@ namespace Models;
 
 class User extends Model
 {
-    public $tableName = 'user';
+    public $tableName = 'users';
+
+    public function quotes()
+    {
+        return $this->hasMany('Quote');
+    }
 }
