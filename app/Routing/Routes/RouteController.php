@@ -21,6 +21,7 @@ class RouteController extends Route
         $method = $this->method;
         $controllerName = "\Controllers\\$this->controller";
         $controller = new $controllerName();
-        $controller->$method();
+        $view = $controller->$method();
+        $view->render();
     }
 }

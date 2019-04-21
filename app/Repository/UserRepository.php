@@ -5,8 +5,8 @@ use Models\User;
 class UserRepository
 {
 
-    public function getUserByEmail($email)
+    public static function getUserByEmail($email)
     {
-        return (new User())->where('email', 'yarbsemaj@gmail.com')->get();
+        return (new User())->where('email', $email)->first();
     }
 }

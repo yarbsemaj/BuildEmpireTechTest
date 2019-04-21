@@ -8,13 +8,13 @@ trait Queryable
 {
     private $wheres = [];
 
-    function where($attribute, $value, $operation = '=')
+    public function where($attribute, $value, $operation = '=')
     {
         $this->wheres[] = [$attribute, $operation, $value];
         return $this;
     }
 
-    function get()
+    public function get()
     {
         $queryString = "SELECT * FROM $this->tableName";
         $values = [];
@@ -29,5 +29,14 @@ trait Queryable
         return Database::modelQuery($queryString, $values, $this);
     }
 
+    public function first()
+    {
+        return $this->get()[0];
+    }
 
+    public function find($id)
+    {
+        $this->where($this->primaryKey, $id);
+        return $this->get()[0];
+    }
 }

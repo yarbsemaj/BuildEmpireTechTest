@@ -26,6 +26,37 @@ class Database
     }
 
     /**
+     * Insert Data into a model
+     * @param string $table
+     * @param array $attributes
+     * @return int
+     */
+    public static function insert(string $table, array $attributes)
+    {
+        $queryString = "INSERT INTO $table (";
+        $values = array();
+
+        foreach ($attributes as $attribute => $value) {
+            $queryString .= " $attribute ,";
+            $values[] = $value;
+        }
+        $queryString = substr($queryString, 0, -1);
+        $queryString .= ') VALUES (';
+
+        for ($i = 0; $i < count($values); $i++) {
+            $queryString .= ' ? ,';
+        }
+
+        $queryString = substr($queryString, 0, -1);
+        $queryString .= ');';
+
+        $pdo = self::getDatabaseConnection();
+        $statement = $pdo->prepare($queryString);
+        $statement->execute($values);
+        return $pdo->lastInsertId();
+    }
+
+    /**
      * Gets a single database connection
      * @return PDO
      */

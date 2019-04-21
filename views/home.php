@@ -1,3 +1,3 @@
-<?php view('boiler-plate/html-header') ?>
+<?php includeView('boiler-plate/html-header') ?>
 Hi 123
-<?php view('boiler-plate/html-footer') ?>
+<?php includeView('boiler-plate/html-footer') ?>

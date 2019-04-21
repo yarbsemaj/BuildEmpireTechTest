@@ -4,13 +4,12 @@
 namespace Controllers;
 
 
-use UserRepository;
+use Views\HTML;
 
 class HomeController
 {
     public function index()
     {
-
-        print_r((new UserRepository())->getUserByEmail(''));
+        return new HTML('home');
     }
 }

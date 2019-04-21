@@ -18,6 +18,7 @@ abstract class Route
      *  Adds middleware to the route
      *
      * @param array|string $middleware
+     * @return Route
      */
     public function middleware($middleware){
         if(is_array($middleware)){
@@ -25,6 +26,8 @@ abstract class Route
         }else{
             $this->middleware[] = $middleware;
         }
+
+        return $this;
     }
 
     /**
@@ -40,8 +43,10 @@ abstract class Route
      */
     private function runMiddleware(){
         foreach ($this->middleware as $middlewareItem){
-            $return = $middlewareItem::exicute();
-            if(!$return){
+            $return = $middlewareItem->execute();
+
+            if (!is_bool($return)) {
+                $return->render();
                 exit();
             }
         }
