@@ -4,12 +4,12 @@
 namespace Controllers;
 
 
-use Views\HTML;
+use Views\HTMLView;
 
 class HomeController
 {
     public function index()
     {
-        return new HTML('home');
+        return new HTMLView('home');
     }
 }

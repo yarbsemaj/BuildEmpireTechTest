@@ -15,19 +15,19 @@ use Validators\PasswordMatch;
 use Validators\Required;
 use Validators\StrongPassword;
 use Validators\Unique;
-use Views\HTML;
+use Views\HTMLView;
 use Views\Redirect;
 
 class LoginController extends Controller
 {
     public function index()
     {
-        return new HTML('/auth/login');
+        return new HTMLView('/auth/login');
     }
 
     public function registrationForm()
     {
-        return new HTML('/auth/register');
+        return new HTMLView('/auth/register');
     }
 
     public function register()

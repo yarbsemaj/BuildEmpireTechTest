@@ -4,7 +4,7 @@
 namespace Views;
 
 
-class HTML implements View
+class HTMLView implements View
 {
     private $viewName;
     private $vars;

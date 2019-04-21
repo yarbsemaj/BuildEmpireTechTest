@@ -49,3 +49,6 @@
 </nav>
 
 <div class="container">
+    <br>
+    <div class="row justify-content-md-center">
+        <div class="col col-md-7">
