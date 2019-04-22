@@ -35,10 +35,13 @@ includeView('boiler-plate/html-header'); ?>
                                 </ul>
                             </div>
                             <div class="card-footer">
-                                <form method="post">
+                                <form method="post" action="<?php print getURL('/goods', ['id' => $good->id]) ?>">
+                                    <?php csrf() ?>
+                                    <?php spoofMethod('DELETE') ?>
                                     <button class="btn btn-danger btn-block">Remove</button>
                                 </form>
                             </div>
+                        </div>
                     <?php } ?>
                     <h4>All</h4>
                     <?php foreach ($goods as $good) { ?>
@@ -85,6 +88,14 @@ includeView('boiler-plate/html-header'); ?>
                                     <li class="list-group-item"><b>Total: </b> £<?php safePrint($subscription->total) ?>
                                     </li>
                                 </ul>
+                            </div>
+                            <div class="card-footer">
+                                <form method="post"
+                                      action="<?php print getURL('/subscriptions', ['id' => $subscription->id]) ?>">
+                                    <?php csrf() ?>
+                                    <?php spoofMethod('DELETE') ?>
+                                    <button class="btn btn-danger btn-block">Remove</button>
+                                </form>
                             </div>
                         </div>
                     <?php } ?>
@@ -135,6 +146,13 @@ includeView('boiler-plate/html-header'); ?>
                                     </li>
                                     <li class="list-group-item"><b>Total: </b> £<?php safePrint($service->total) ?></li>
                                 </ul>
+                            </div>
+                            <div class="card-footer">
+                                <form method="post" action="<?php print getURL('/services', ['id' => $service->id]) ?>">
+                                    <?php csrf() ?>
+                                    <?php spoofMethod('DELETE') ?>
+                                    <button class="btn btn-danger btn-block">Remove</button>
+                                </form>
                             </div>
                         </div>
                     <?php } ?>

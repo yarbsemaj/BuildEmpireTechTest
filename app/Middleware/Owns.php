@@ -29,6 +29,7 @@ class Owns implements Middleware
     public function execute()
     {
         $model = $this->model;
+
         return $model::find($_GET[$this->urlPram])->getOwnerId() != \AccessControl\Auth::id() ? new Error(404) : true;
     }
 }

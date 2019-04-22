@@ -26,15 +26,21 @@ $routes = [
         [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Good')]),
     'POST:/goods/quote' => (new RouteController('GoodController', 'addToQuote'))->middleware(
         [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Good')]),
+    'DELETE:/goods' => (new RouteController('GoodController', 'destroy'))->middleware(
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id']), new Exist('Good'), new Owns('Good')]),
 
     'GET:/services/show' => (new RouteController('ServiceController', 'show'))->middleware(
         [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Service')]),
     'POST:/services/quote' => (new RouteController('ServiceController', 'addToQuote'))->middleware(
         [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Service')]),
+    'DELETE:/services' => (new RouteController('ServiceController', 'destroy'))->middleware(
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id']), new Exist('Service'), new Owns('Service')]),
 
     'GET:/subscriptions/show' => (new RouteController('SubscriptionController', 'show'))->middleware(
         [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Subscription')]),
     'POST:/subscriptions/quote' => (new RouteController('SubscriptionController', 'addToQuote'))->middleware(
         [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Subscription')]),
+    'DELETE:/subscriptions' => (new RouteController('SubscriptionController', 'destroy'))->middleware(
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id']), new Exist('Subscription'), new Owns('Subscription')]),
 
 ];

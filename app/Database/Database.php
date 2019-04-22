@@ -82,6 +82,22 @@ class Database
     }
 
     /**
+     * Removes a model form the database
+     * @param string $table
+     * @param string $pkey
+     * @param string|int $value
+     */
+    public static function delete($table, $pkey, $value)
+    {
+        $queryString = "DELETE FROM $table WHERE $pkey = ? ;";
+        $values = [$value];
+
+        $pdo = self::getDatabaseConnection();
+        $statement = $pdo->prepare($queryString);
+        $statement->execute($values);
+    }
+
+    /**
      * Gets a single database connection
      * @return PDO
      */

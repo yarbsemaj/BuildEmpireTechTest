@@ -5,5 +5,7 @@ session_start();
 
 include('../routes.php');
 
-$routes[$_SERVER['REQUEST_METHOD'] . ':' . strtok($_SERVER['REQUEST_URI'], '?')]->go();
+$method = isset($_POST['_METHOD']) ? $_POST['_METHOD'] : $_SERVER['REQUEST_METHOD'];
+
+$routes[$method . ':' . strtok($_SERVER['REQUEST_URI'], '?')]->go();
 

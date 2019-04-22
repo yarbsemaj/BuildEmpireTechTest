@@ -46,4 +46,12 @@ class ServiceController
 
         return new Redirect('/quotes/show', ['id' => $_GET['quote_id']]);
     }
+
+    public function destroy()
+    {
+        $model = Service::find($_GET['id']);
+        $model->delete();
+
+        return new Redirect($_SERVER['HTTP_REFERER']);
+    }
 }

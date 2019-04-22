@@ -24,6 +24,17 @@ if (!function_exists('csrf')) {
     }
 }
 
+if (!function_exists('spoofMethod')) {
+    /**
+     * Genertae a method to spoof any restful method
+     * @param $method
+     */
+    function spoofMethod($method)
+    {
+        print "<input type='hidden' name='_METHOD' value='$method'>";
+    }
+}
+
 if (!function_exists('safePrint')) {
     /**
      * Prints a string sans special HTML chars
