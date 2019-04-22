@@ -21,6 +21,11 @@ abstract class Model
 
     public function __get($name)
     {
+        $method = 'get' . ucfirst($name);
+        if (method_exists($this, $method)) {
+            return $this->$method();
+        }
+
         return $this->attributes[$name];
     }
 

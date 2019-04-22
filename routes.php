@@ -4,6 +4,7 @@ use Middleware\Auth;
 use Middleware\CheckGetParams;
 use Middleware\CSRFCheck;
 use Middleware\Exist;
+use Middleware\Owns;
 use Routing\Routes\RouteController;
 
 $routes = [
@@ -18,7 +19,12 @@ $routes = [
     'GET:/quotes' => (new RouteController('QuoteController', 'index'))->middleware(new Auth()),
     'GET:/quotes/create' => (new RouteController('QuoteController', 'create'))->middleware(new Auth()),
     'GET:/quotes/show' => (new RouteController('QuoteController', 'show'))
-        ->middleware([new Auth(), new CheckGetParams(['id']), new Exist('Quote')]),
+        ->middleware([new Auth(), new CheckGetParams(['id']), new Exist('Quote'), new Owns('Quote')]),
+
+    'GET:/goods/show' => (new RouteController('GoodController', 'show'))->middleware(
+        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+    'POST:/goods/quote' => (new RouteController('GoodController', 'addToQuote'))->middleware(
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
 
 
 

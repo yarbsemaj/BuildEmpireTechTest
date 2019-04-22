@@ -6,6 +6,7 @@ namespace Database;
 
 use PDO;
 use PDOException;
+use PDOStatement;
 
 class Database
 {
@@ -90,6 +91,20 @@ class Database
             self::$databaseConnection = self::connect();
         }
         return self::$databaseConnection;
+    }
+
+    /**
+     * Query the database
+     * @param string $query
+     * @param array $prams
+     * @return bool|PDOStatement
+     */
+    public static function query(string $query, array $prams)
+    {
+        $statement = self::getDatabaseConnection()->prepare($query);
+        $statement->execute($prams);
+
+        return $statement;
     }
 
     /**

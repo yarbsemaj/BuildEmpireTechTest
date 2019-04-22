@@ -29,12 +29,10 @@ class QuoteController
 
     public function show()
     {
-
         $quote = Quote::find($_GET['id']);
         $subscripts = ProductType::where('name', 'Subscription')->first()->products();
         $goods = ProductType::where('name', 'Goods')->first()->products();
         $services = ProductType::where('name', 'Service')->first()->products();
-
 
         return new HTMLView('quote/show', [
             'quote' => $quote,

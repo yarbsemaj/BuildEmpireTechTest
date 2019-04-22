@@ -35,10 +35,10 @@ trait Relatable
         $class = new $classPath();
         $foreignTableName = $class->tableName;
         $foreignPrimaryKey = $class->primaryKey;
-        $foreignKeyName = substr($this->tableName, 0, -1) . '_id';
+        $foreignKeyName = substr($class->tableName, 0, -1) . '_id';
         $foreignKey = $this->$foreignKeyName;
 
         $query = "SELECT * FROM $foreignTableName WHERE $foreignPrimaryKey = ? ;";
-        return Database::modelQuery($query, [$this->$foreignKey], $class)[0];
+        return Database::modelQuery($query, [$foreignKey], $class)[0];
     }
 }

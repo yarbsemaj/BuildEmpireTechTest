@@ -35,6 +35,32 @@ if (!function_exists('safePrint')) {
     }
 }
 
+if (!function_exists('shortenString')) {
+    /**
+     * Shorten string by adding ...
+     * @param $string
+     * @param int $len length in char
+     * @return string
+     */
+    function shortenString($string, $len = 140)
+    {
+        return mb_strimwidth($string, 0, $len, "...");
+    }
+}
+
+if (!function_exists('getURL')) {
+    /**
+     * Gets a url based on prams
+     * @param $url
+     * @param $prams
+     * @return string
+     */
+    function getURL($url, $prams)
+    {
+        return $url . '?' . http_build_query($prams);
+    }
+}
+
 if (!function_exists('generateRandomString')) {
     function generateRandomString($length = 30)
     {

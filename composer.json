@@ -3,7 +3,7 @@
     "require": {
         "polarising/bcrypt": "^1.0",
         "ext-pdo": "*",
-        "vlucas/phpdotenv": "^3.3"
+      "ext-mbstring": "*"
     },
 
     "autoload": {
