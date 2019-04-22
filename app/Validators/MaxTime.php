@@ -23,7 +23,7 @@ class MaxTime implements Validator
      */
     public function validate($field, $value)
     {
-        return strtotime($value) + $this->delay <= strtotime($this->max);
+        return (strtotime($value) + $this->delay) <= strtotime($this->max);
     }
 
     /**
@@ -34,6 +34,6 @@ class MaxTime implements Validator
      */
     public function message($field, $value)
     {
-        return "$field must be less than $this->max";
+        return "$field must be the $this->max or earlier";
     }
 }

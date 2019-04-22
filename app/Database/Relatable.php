@@ -21,6 +21,7 @@ trait Relatable
         $primaryKey = $this->primaryKey;
 
         $query = "SELECT * FROM $foreignTableName WHERE $foreignKey = ? ;";
+
         return Database::modelQuery($query, [$this->$primaryKey], $class);
     }
 

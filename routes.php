@@ -31,7 +31,9 @@ $routes = [
     'POST:/services/quote' => (new RouteController('ServiceController', 'addToQuote'))->middleware(
         [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
 
-
-
+    'GET:/subscriptions/show' => (new RouteController('SubscriptionController', 'show'))->middleware(
+        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+    'POST:/subscriptions/quote' => (new RouteController('SubscriptionController', 'addToQuote'))->middleware(
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
 
 ];

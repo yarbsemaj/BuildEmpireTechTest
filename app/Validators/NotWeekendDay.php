@@ -4,17 +4,8 @@
 namespace Validators;
 
 
-class MinTime implements Validator
+class NotWeekendDay implements Validator
 {
-    private $max;
-    private $delay;
-
-    public function __construct($max, $delay = 0)
-    {
-        $this->max = $max;
-        $this->delay = $delay;
-    }
-
 
     /**
      * Validated the filed in question
@@ -24,7 +15,8 @@ class MinTime implements Validator
      */
     public function validate($field, $value)
     {
-        return strtotime($value) >= (strtotime($this->max) + $this->delay);
+        $weekday = date('w', strtotime($value));
+        return !($weekday == 0 || $weekday == 6);
     }
 
     /**
@@ -35,6 +27,6 @@ class MinTime implements Validator
      */
     public function message($field, $value)
     {
-        return "$field must be the $this->max or later";
+        return "$field must not be a weekend";
     }
 }

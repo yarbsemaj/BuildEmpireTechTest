@@ -5,6 +5,7 @@ use Models\Quote;
 
 /** @var array $goods */
 /** @var array $services */
+/** @var array $subscriptions */
 ?>
 <?php
 includeView('boiler-plate/html-header'); ?>
@@ -55,6 +56,55 @@ includeView('boiler-plate/html-header'); ?>
                 </div>
             </div>
             <br>
+
+            <div class="card">
+                <div class="card-header">Subscriptions</div>
+                <div class="card-body">
+                    <h4>In Quote</h4>
+                    <?php if (empty($quote->subscriptions())) { ?>
+                        <div class="card bg-light p-3">
+                            <h2>Non here yet</h2>
+                        </div>
+                    <?php } ?>
+                    <?php foreach ($quote->subscriptions() as $subscription) { ?>
+                        <div class="card" style="margin-bottom: 5px">
+                            <div class="card-header"><?php safePrint($subscription->product()->name) ?></div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <b>Price: </b> £<?php safePrint($subscription->product()->price) ?></li>
+                                    <li class="list-group-item"><b>Start
+                                            Date: </b> <?php safePrint($subscription->start_date) ?>
+                                    <li class="list-group-item"><b>End
+                                            Date: </b> <?php safePrint($subscription->end_date) ?>
+                                    <li class="list-group-item"><b>Total: </b> £<?php safePrint($subscription->total) ?>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <h4>All</h4>
+                    <?php foreach ($subscriptions as $subscription) { ?>
+                        <div class="card" style="margin-bottom: 5px">
+                            <div class="card-header"><?php safePrint($subscription->name) ?></div>
+                            <div class="card-body">
+                                <p><?php safePrint(shortenString($subscription->description)) ?></p>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><b>Price: </b> £<?php safePrint($subscription->price) ?>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <a href="<?php print getURL('/subscriptions/show', ['id' => $subscription->id, 'quote_id' => $quote->id]) ?>"
+                                   class="btn btn-success btn-block">
+                                    Add to Quote
+                                </a>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <br>
             <div class="card">
                 <div class="card-header">Services</div>
                 <div class="card-body">
@@ -94,7 +144,7 @@ includeView('boiler-plate/html-header'); ?>
                                 </ul>
                             </div>
                             <div class="card-footer">
-                                <a href="<?php print getURL('/services/show', ['id' => $service->id, 'quote_id' => $service->id]) ?>"
+                                <a href="<?php print getURL('/services/show', ['id' => $service->id, 'quote_id' => $quote->id]) ?>"
                                    class="btn btn-success btn-block">
                                     Add to Quote
                                 </a>
@@ -103,7 +153,6 @@ includeView('boiler-plate/html-header'); ?>
                     <?php } ?>
                 </div>
             </div>
-
         </div>
     </div>
 <?php includeView('boiler-plate/html-footer') ?>

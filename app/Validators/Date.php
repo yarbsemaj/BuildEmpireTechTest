@@ -4,17 +4,8 @@
 namespace Validators;
 
 
-class MinTime implements Validator
+class Date implements Validator
 {
-    private $max;
-    private $delay;
-
-    public function __construct($max, $delay = 0)
-    {
-        $this->max = $max;
-        $this->delay = $delay;
-    }
-
 
     /**
      * Validated the filed in question
@@ -24,7 +15,7 @@ class MinTime implements Validator
      */
     public function validate($field, $value)
     {
-        return strtotime($value) >= (strtotime($this->max) + $this->delay);
+        return preg_match("/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/", $value);
     }
 
     /**
@@ -35,6 +26,6 @@ class MinTime implements Validator
      */
     public function message($field, $value)
     {
-        return "$field must be the $this->max or later";
+        return "$field must be a valid date";
     }
 }
