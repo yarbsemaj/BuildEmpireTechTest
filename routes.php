@@ -2,6 +2,7 @@
 
 use Middleware\Auth;
 use Middleware\CheckGetParams;
+use Middleware\CheckProductType;
 use Middleware\CSRFCheck;
 use Middleware\Exist;
 use Middleware\Owns;
@@ -22,18 +23,18 @@ $routes = [
         ->middleware([new Auth(), new CheckGetParams(['id']), new Exist('Quote'), new Owns('Quote')]),
 
     'GET:/goods/show' => (new RouteController('GoodController', 'show'))->middleware(
-        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Good')]),
     'POST:/goods/quote' => (new RouteController('GoodController', 'addToQuote'))->middleware(
-        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Good')]),
 
     'GET:/services/show' => (new RouteController('ServiceController', 'show'))->middleware(
-        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Service')]),
     'POST:/services/quote' => (new RouteController('ServiceController', 'addToQuote'))->middleware(
-        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Service')]),
 
     'GET:/subscriptions/show' => (new RouteController('SubscriptionController', 'show'))->middleware(
-        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Subscription')]),
     'POST:/subscriptions/quote' => (new RouteController('SubscriptionController', 'addToQuote'))->middleware(
-        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote', 'quote_id'), new Owns('Quote', 'quote_id'), new Exist('Product'), new CheckProductType('Subscription')]),
 
 ];

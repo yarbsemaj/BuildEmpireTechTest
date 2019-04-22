@@ -12,6 +12,7 @@ includeView('boiler-plate/html-header'); ?>
     <div class="card">
         <div class="card-header">Quotes #<?php safePrint($quote->id) ?></div>
         <div class="card-body">
+            <h3>Total Quote: £<?php safePrint($quote->total) ?></h3>
             <div class="card">
                 <div class="card-header">Goods</div>
                 <div class="card-body">
@@ -33,7 +34,11 @@ includeView('boiler-plate/html-header'); ?>
                                     <li class="list-group-item"><b>Total: </b> £<?php safePrint($good->total) ?></li>
                                 </ul>
                             </div>
-                        </div>
+                            <div class="card-footer">
+                                <form method="post">
+                                    <button class="btn btn-danger btn-block">Remove</button>
+                                </form>
+                            </div>
                     <?php } ?>
                     <h4>All</h4>
                     <?php foreach ($goods as $good) { ?>

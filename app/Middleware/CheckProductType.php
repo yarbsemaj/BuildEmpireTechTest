@@ -4,11 +4,13 @@
 namespace Middleware;
 
 
+use Models\Product;
 use Views\Error;
 use Views\View;
 
-class Owns implements Middleware
+class CheckProductType implements Middleware
 {
+
     private $urlPram, $model;
 
     /**
@@ -19,7 +21,7 @@ class Owns implements Middleware
     public function __construct($model, $urlPram = 'id')
     {
         $this->urlPram = $urlPram;
-        $this->model = "\Models\\$model";
+        $this->model = $model;
     }
 
     /**
@@ -28,7 +30,6 @@ class Owns implements Middleware
      */
     public function execute()
     {
-        $model = $this->model;
-        return $model::find($_GET[$this->urlPram])->getOwnerId() != \AccessControl\Auth::id() ? new Error(404) : true;
+        return Product::find($_GET[$this->urlPram])->productType()->model != $this->model ? new Error(404) : true;
     }
 }
