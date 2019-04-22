@@ -17,9 +17,10 @@ class Good extends Model
 
     public function getTotal()
     {
-        return Database::query(
+        return number_format(
+            (float)Database::query(
             'SELECT goods.quantity * products.price AS total 
                     FROM goods JOIN products ON goods.product_id = products.id
-                    WHERE goods.id = ?;', [$this->id])->fetch()['total'];
+                    WHERE goods.id = ?;', [$this->id])->fetch()['total'], 2);
     }
 }

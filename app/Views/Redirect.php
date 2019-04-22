@@ -22,7 +22,7 @@ class Redirect implements View
         $parts = parse_url($url);
         parse_str($parts['query'], $query);
 
-        $this->prams = array_merge($this->prams, $query);
+        $this->prams = array_merge($query, $this->prams);
     }
 
     public function render()

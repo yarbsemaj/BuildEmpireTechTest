@@ -26,6 +26,11 @@ $routes = [
     'POST:/goods/quote' => (new RouteController('GoodController', 'addToQuote'))->middleware(
         [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
 
+    'GET:/services/show' => (new RouteController('ServiceController', 'show'))->middleware(
+        [new Auth(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+    'POST:/services/quote' => (new RouteController('ServiceController', 'addToQuote'))->middleware(
+        [new Auth(), new CSRFCheck(), new CheckGetParams(['id', 'quote_id']), new Exist('Quote'), new Owns('Quote', 'quote_id')]),
+
 
 
 
