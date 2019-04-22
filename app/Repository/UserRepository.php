@@ -7,6 +7,6 @@ class UserRepository
 
     public static function getUserByEmail($email)
     {
-        return (new User())->where('email', $email)->first();
+        return User::where('email', $email)->first();
     }
 }

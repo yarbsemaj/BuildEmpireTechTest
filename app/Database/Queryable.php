@@ -4,17 +4,21 @@
 namespace Database;
 
 
+use Facades\Facade;
+
 trait Queryable
 {
+    use Facade;
+
     private $wheres = [];
 
-    public function where($attribute, $value, $operation = '=')
+    protected function whereFacade($attribute, $value, $operation = '=')
     {
         $this->wheres[] = [$attribute, $operation, $value];
         return $this;
     }
 
-    public function get()
+    protected function getFacade()
     {
         $queryString = "SELECT * FROM $this->tableName";
         $values = [];
@@ -29,12 +33,12 @@ trait Queryable
         return Database::modelQuery($queryString, $values, $this);
     }
 
-    public function first()
+    protected function firstFacade()
     {
         return $this->get()[0];
     }
 
-    public function find($id)
+    protected function findFacade($id)
     {
         $this->where($this->primaryKey, $id);
         return $this->get()[0];

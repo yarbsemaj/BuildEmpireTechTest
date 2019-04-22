@@ -28,4 +28,5 @@ abstract class Model
     {
         $this->attributes[$name] = $value;
     }
+
 }
