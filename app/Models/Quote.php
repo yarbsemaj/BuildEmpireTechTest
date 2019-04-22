@@ -4,7 +4,7 @@
 namespace Models;
 
 
-class Quote extends Model
+class Quote extends OwnedModel
 {
     public $tableName = 'quotes';
 
@@ -13,17 +13,17 @@ class Quote extends Model
         return $this->belongsTo('User');
     }
 
-    public function good()
+    public function goods()
     {
         return $this->hasMany('Good');
     }
 
-    public function service()
+    public function services()
     {
         return $this->hasMany('Service');
     }
 
-    public function subscription()
+    public function subscriptions()
     {
         return $this->hasMany('Subscription');
     }

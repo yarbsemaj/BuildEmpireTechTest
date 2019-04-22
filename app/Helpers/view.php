@@ -3,6 +3,9 @@
 if (!function_exists('includeView')) {
     function includeView($name, $data = null)
     {
+        if (is_array($data)) {
+            extract($data);
+        }
         include($_SERVER["DOCUMENT_ROOT"] . "/views/$name.php");
     }
 }
@@ -15,10 +18,20 @@ if (!function_exists('csrf')) {
         }
 
         $csrfString = generateRandomString();
-
         $_SESSION['csrf_tokens'][] = $csrfString;
 
         print "<input type='hidden' name='csrf_token' value='$csrfString'>";
+    }
+}
+
+if (!function_exists('safePrint')) {
+    /**
+     * Prints a string sans special HTML chars
+     * @param $string
+     */
+    function safePrint($string)
+    {
+        echo htmlspecialchars($string);
     }
 }
 

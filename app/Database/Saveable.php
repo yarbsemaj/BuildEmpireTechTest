@@ -26,7 +26,7 @@ trait Saveable
      */
     private function update()
     {
-
+        Database::update($this->tableName, $this->attributes, $this->primaryKey);
     }
 
     /**

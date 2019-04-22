@@ -31,7 +31,7 @@ class Database
      * @param array $attributes
      * @return int
      */
-    public static function insert(string $table, array $attributes)
+    public static function insert($table, array $attributes)
     {
         $queryString = "INSERT INTO $table (";
         $values = array();
@@ -54,6 +54,30 @@ class Database
         $statement = $pdo->prepare($queryString);
         $statement->execute($values);
         return $pdo->lastInsertId();
+    }
+
+    /**
+     * Updates the model in the database
+     * @param string $table
+     * @param array $attributes
+     * @param string $primaryKey the name of the primary key,this value must be in the attributes array
+     */
+    public static function update($table, array $attributes, $primaryKey = 'id')
+    {
+        $queryString = "UPDATE $table SET";
+        $values = array();
+
+        foreach ($attributes as $attribute => $value) {
+            $queryString .= " $attribute = ? ,";
+            $values[] = $value;
+        }
+        $queryString = substr($queryString, 0, -1);
+        $queryString .= "WHERE $primaryKey = ? ;";
+        $values[] = $attributes[$primaryKey];
+
+        $pdo = self::getDatabaseConnection();
+        $statement = $pdo->prepare($queryString);
+        $statement->execute($values);
     }
 
     /**
