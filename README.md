@@ -28,4 +28,4 @@ Due to time constraints, CSRF protection and integrating GUZLE with the session 
 `docker-compose up`
 The web server runs on `localhost:8000`
 
-phpMyAdmin is on port `8080`, username `png`, password `png` from the the sql dump can be imported.
+phpMyAdmin is on port `8080`, username `png`, password `png` from there the sql dump can be imported.
