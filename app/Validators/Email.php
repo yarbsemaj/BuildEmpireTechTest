@@ -15,7 +15,7 @@ class Email implements Validator
      */
     public function validate($field, $value)
     {
-        return filter_var($value, FILTER_VALIDATE_EMAIL);
+        return filter_var($value, FILTER_VALIDATE_EMAIL) == $value;
     }
 
     /**

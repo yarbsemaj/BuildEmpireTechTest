@@ -15,7 +15,7 @@ class StrongPassword implements Validator
      */
     public function validate($field, $value)
     {
-        return preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $value);
+        return preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $value) == 1;
     }
 
     /**

@@ -15,7 +15,7 @@ class Integer implements Validator
      */
     public function validate($field, $value)
     {
-        return floor($value) == $value;
+        return is_numeric($value) && floor($value) == $value;
     }
 
     /**

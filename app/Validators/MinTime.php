@@ -6,12 +6,12 @@ namespace Validators;
 
 class MinTime implements Validator
 {
-    private $max;
+    private $min;
     private $delay;
 
-    public function __construct($max, $delay = 0)
+    public function __construct($min, $delay = 0)
     {
-        $this->max = $max;
+        $this->min = $min;
         $this->delay = $delay;
     }
 
@@ -24,7 +24,7 @@ class MinTime implements Validator
      */
     public function validate($field, $value)
     {
-        return strtotime($value) >= (strtotime($this->max) + $this->delay);
+        return strtotime($value) >= (strtotime($this->min) + $this->delay);
     }
 
     /**
@@ -35,6 +35,6 @@ class MinTime implements Validator
      */
     public function message($field, $value)
     {
-        return "$field must be the $this->max or later";
+        return "$field must be the $this->min or later";
     }
 }
