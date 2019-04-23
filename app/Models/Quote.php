@@ -35,7 +35,7 @@ class Quote extends OwnedModel
         return number_format(
             (float)Database::query(
                 'SELECT SUM(product_list.total) as total FROM (
-                    (SELECT 5 * (DATEDIFF(subscriptions.start_date, subscriptions.end_date) DIV 7) + MID(\'0123444401233334012222340111123400012345001234550\', 7 * WEEKDAY(subscriptions.start_date) + WEEKDAY(subscriptions.end_date) + 1, 1)  * products.price AS total 
+                    (SELECT (5 * (DATEDIFF(subscriptions.end_date, subscriptions.start_date) DIV 7) + MID(\'0123444401233334012222340111123400012345001234550\', 7 * WEEKDAY(subscriptions.start_date) + WEEKDAY(subscriptions.end_date) + 1, 1))* products.price AS total 
                     FROM subscriptions JOIN products ON subscriptions.product_id = products.id
                     WHERE subscriptions.quote_id = ?)
                     UNION ALL
