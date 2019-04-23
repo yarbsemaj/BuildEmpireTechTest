@@ -4,12 +4,17 @@
 namespace Controllers;
 
 
-use Views\HTMLView;
+use AccessControl\Auth;
+use Views\Redirect;
 
 class HomeController
 {
     public function index()
     {
-        return new HTMLView('home');
+        if (Auth::auth()) {
+            return new Redirect('/quotes');
+        } else {
+            return new Redirect('/login');
+        }
     }
 }

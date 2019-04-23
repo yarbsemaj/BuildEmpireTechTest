@@ -15,10 +15,11 @@ includeView('boiler-plate/html-header'); ?>
                 <tbody>
                 <?php foreach ($quotes as $quote) { ?>
                     <tr>
-                        <th scope="row"><?php safePrint($quote->id) ?></th>
-                        <td>Sales</td>
+                        <th scope="row"><a
+                                    href="<?php print getURL('quotes/show', ['id' => $quote->id]) ?>"><?php safePrint($quote->id) ?></a>
+                        </th>
+                        <td>£<?php safePrint($quote->total) ?></td>
                     </tr>
-
                 <?php } ?>
                 </tbody>
             </table>
