@@ -10,6 +10,11 @@ class RouteController extends Route
     private $controller;
     private $method;
 
+    /**
+     * A route resulting in controller method execution.
+     * @param string $controller name of controller class
+     * @param string $method
+     */
     public function __construct($controller, $method)
     {
         $this->controller = $controller;

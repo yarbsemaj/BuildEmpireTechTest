@@ -1,6 +1,11 @@
 <?php
 
 if (!function_exists('includeView')) {
+    /**
+     * Includes a selected view,
+     * @param string $name path from view dir less .php
+     * @param array $data
+     */
     function includeView($name, $data = null)
     {
         if (is_array($data)) {
@@ -11,6 +16,9 @@ if (!function_exists('includeView')) {
 }
 
 if (!function_exists('csrf')) {
+    /**
+     * Add a csrf field to the current form
+     */
     function csrf()
     {
         if (!isset($_SESSION['csrf_tokens'])) {
@@ -26,7 +34,7 @@ if (!function_exists('csrf')) {
 
 if (!function_exists('spoofMethod')) {
     /**
-     * Genertae a method to spoof any restful method
+     * Generate a method to spoof any restful method
      * @param $method
      */
     function spoofMethod($method)
