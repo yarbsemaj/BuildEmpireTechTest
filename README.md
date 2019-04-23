@@ -22,3 +22,7 @@ BuildEmpire Tech Test
 
 # Testing
 Due to time constraints, CSRF protection and integrating GUZLE with the session cookie I did not have time to a full sweet of unit tests. However, extensive non unit testing was carried out before submission.
+
+# To Run
+
+`docker-compose up`
