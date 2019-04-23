@@ -1,7 +1,7 @@
 BuildEmpire Tech Test
 ======
 ##### Product Quoting system
-###### Build using a lightweight framework special created for this project.
+###### Build using a lightweight framework specially created for this project.
 
 # Key Points
 1. Fully MVC implementation
